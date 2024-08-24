@@ -1,0 +1,27 @@
+<MyRemote>
+
+
+    GridLayout:
+        cols:1
+        size: root.width, root.height
+
+        Button:
+            text:"Forward"
+            on_press: root.StartForward()
+            on_release: root.StopForward()
+        
+        Button:
+            text:"Backward"
+            on_press: root.StartBackward()
+            on_release: root.StopBackward()
+        
+        Button:
+            text:"Left"
+            on_press: root.StartLeft()
+            on_release: root.StopLeft()
+        
+        Button:
+            text:"Right"
+            on_press: root.StartRight()
+            on_release: root.StopRight()
+       
