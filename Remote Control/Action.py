@@ -4,20 +4,9 @@ import logging
 
 log = logging.getLogger()
 
-class BaseAction(ABC):
-    def __init__(self) -> None:
-        super().__init__()
-        
-    @abstractmethod
-    def encode(self):
-        ...
-        
-    @abstractmethod
-    def decode(self):
-        ... 
-    
-class Action(BaseAction):
-    def __init__(self, robot_id:int, vx: float = 0.0, vy: float = 0.0, w: float = 0.0, kick: int = 0, dribble: bool = False):
+
+class Action():
+    def __init__(self, robot_id:int, vx: float = 0.0, vy: float = 0.0, w: float = 0.0, kick: int = 0, dribble: int = 0):
         """Action
             Object for initialise action commands, encode / decode strings for UDP transportation.
         Args:
