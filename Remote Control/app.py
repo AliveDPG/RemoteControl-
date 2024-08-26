@@ -32,25 +32,25 @@ class MyRemote(Widget):
     
 
     def StartForward(self):
-        Clock.schedule_interval(self.movingForward, 0.1)
+        Clock.schedule_interval(self.movingForward, 0.01)
         
     def StopForward(self):
         Clock.unschedule(self.movingForward)
 
     def StartBackward(self):
-        Clock.schedule_interval(self.movingBackward, 0.1)
+        Clock.schedule_interval(self.movingBackward, 0.01)
 
     def StopBackward(self):
         Clock.unschedule(self.movingBackward)
     
     def StartLeft(self):
-        Clock.schedule_interval(self.movingLeft, 0.1)
+        Clock.schedule_interval(self.movingLeft, 0.01)
 
     def StopLeft(self):
         Clock.unschedule(self.movingLeft)
 
     def StartRight(self):
-        Clock.schedule_interval(self.movingRight, 0.1)
+        Clock.schedule_interval(self.movingRight, 0.01)
 
     def StopRight(self):
         Clock.unschedule(self.movingRight)
@@ -58,7 +58,7 @@ class MyRemote(Widget):
     def movingForward(self, dt):
         action = Action.Action(robot_id=robot_id, vy = 5)
         send(action)
-        print(f'{action}')
+        # print(f'{action}')
     
     def movingBackward(self, dt):
         action = Action.Action(robot_id=robot_id , vy = -5)
