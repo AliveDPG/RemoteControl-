@@ -11,15 +11,15 @@ import time
 import Action
 import threading
 
-robot_ip = "1234"
-robot_port = 2004
+robot_ip = "127.0.0.1"
+robot_port = 12342
 send_cond = True 
 
 robot_id = 1
 
-def send(action):
+def send(action:Action):
     remote_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    msg = action
+    msg:bytes = action.encode()
     remote_socket.sendto(msg,(robot_ip, robot_port))
     print(f'sending Action {action}')
 
@@ -56,22 +56,22 @@ class MyRemote(Widget):
         Clock.unschedule(self.movingRight)
 
     def movingForward(self, dt):
-        action = Action.Action(robot_id=robot_id, vy = 5).encode()
+        action = Action.Action(robot_id=robot_id, vy = 5)
         send(action)
         print(f'{action}')
     
     def movingBackward(self, dt):
-        action = Action.Action(robot_id=robot_id , vy = -5).encode()
+        action = Action.Action(robot_id=robot_id , vy = -5)
         send(action)
         # print(f'{action}')
     
     def movingLeft(self, dt):
-        action = Action.Action(robot_id=robot_id , vx = -5).encode()
+        action = Action.Action(robot_id=robot_id , vx = -5)
         send(action)
         # print(f'{action}')
     
     def movingRight(self, dt):
-        action = Action.Action(robot_id=robot_id, vx = 5).encode()
+        action = Action.Action(robot_id=robot_id, vx = 5)
         send(action)
         # print(f'{action}')
 

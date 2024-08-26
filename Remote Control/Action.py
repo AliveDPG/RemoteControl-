@@ -39,14 +39,6 @@ class Action(BaseAction):
         self._kick: int = kick
         self._dribble: int = dribble
     
-    def id(self) -> int:
-        """Gets the robotID of action
-
-        Returns:
-            int: Robot ID
-        """
-        return self.robot_id
-    
     def encode(self) -> bytes:
         """encode
             Encodes action object into bytes
