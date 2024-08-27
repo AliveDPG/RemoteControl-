@@ -14,19 +14,20 @@ class IpId(BoxLayout):
 
 Window.clearcolor = (1, 1, 1, 1)  # changes the colour of the background to white 
 
-robot_ip = "192.168.200.243"
-robot_port = 50514
-robot_id = 1
-DRIBBLE = False
 INTERVAL = 0.05 # second
 
-def send(action: Action):
-    remote_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    msg: bytes = action.encode()
-    remote_socket.sendto(msg, (robot_ip, robot_port))
-    print(f'sending Action {action}')
-
 class MyRemote(FloatLayout):
+    DRIBBLE= False
+    robot_ip = "192.168.200.243"
+    robot_port = 50514
+    robot_id = 1
+
+    def send(self,action: Action):
+        remote_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        msg: bytes = action.encode()
+        remote_socket.sendto(msg, (self.robot_ip, self.robot_port))
+        print(f'sending Action {action}')
+        
     def StartForward(self, instance):
         Clock.schedule_interval(self.movingForward, INTERVAL)
 
@@ -71,47 +72,47 @@ class MyRemote(FloatLayout):
     
 
     def movingForward(self, dt):
-        action = Action(robot_id=robot_id, vy=5)
-        send(action)
+        action = Action(robot_id=self.robot_id, vy=5)
+        self.send(action)
 
     def movingBackward(self, dt):
-        action = Action(robot_id=robot_id, vy=-5)
-        send(action)
+        action = Action(robot_id=self.robot_id, vy=-5)
+        self.send(action)
 
     def movingLeft(self, dt):
-        action = Action(robot_id=robot_id, vx=-5)
-        send(action)
+        action = Action(robot_id=self.robot_id, vx=-5)
+        self.send(action)
 
     def movingRight(self, dt):
-        action = Action(robot_id=robot_id, vx=5)
-        send(action)
+        action = Action(robot_id=self.robot_id, vx=5)
+        self.send(action)
     
     def turnRight(self,dt):
-        action = Action(robot_id,w=0.5)
-        send(action)
+        action = Action(robot_id=self.robot_id,w=0.5)
+        self.send(action)
         
     def turnLeft(self,dt):
-        action = Action(robot_id,w=-0.5)
-        send(action)
+        action = Action(robot_id=self.robot_id,w=-0.5)
+        self.send(action)
     
     def kick(self, dt):
-        action = Action(robot_id,kick=1)
-        send(action)
+        action = Action(robot_id=self.robot_id,kick=1)
+        self.send(action)
         
     def dribble(self,dt):
-        d = toggle()
+        d = toggle(self.DRIBBLE)
         if d is True:
-            action = Action(robot_id, d=1)
+            action = Action(robot_id=self.robot_id, dribble=1)
         else:
-            action = Action(robot_id,d=0)
-        send(action)
+            action = Action(robot_id=self.robot_id,dribble=0)
+        self.send(action)
 
-def toggle():
-    if DRIBBLE is False:
-        DRIBBLE = True
-    elif DRIBBLE is True:
-        DRIBBLE = False
-    return DRIBBLE
+def toggle(d):
+    if d is False:
+        d = True
+    elif d is True:
+        d = False
+    return d
 
 class MyApp(App):
     def build(self):
