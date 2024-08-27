@@ -68,7 +68,12 @@ class MyRemote(FloatLayout):
         Clock.schedule_interval(self.kick,INTERVAL)
 
     def ToggleDribble(self,instance):
+        self.DRIBBLE = toggle(self.DRIBBLE)
         Clock.schedule_interval(self.dribble,INTERVAL)
+    
+    def ExitDribble(self,instance):
+        if self.DRIBBLE is False:
+            Clock.unschedule(self.dribble)
     
 
     def movingForward(self, dt):
@@ -100,8 +105,8 @@ class MyRemote(FloatLayout):
         self.send(action)
         
     def dribble(self,dt):
-        d = toggle(self.DRIBBLE)
-        if d is True:
+       
+        if self.DRIBBLE is True:
             action = Action(robot_id=self.robot_id, dribble=1)
         else:
             action = Action(robot_id=self.robot_id,dribble=0)
