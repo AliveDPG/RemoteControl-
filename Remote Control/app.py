@@ -1,5 +1,6 @@
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label  # Import Label
 from kivy.clock import Clock
@@ -7,6 +8,9 @@ from kivy.uix.widget import Widget
 from kivy.core.window import Window
 import socket
 import Action
+
+class IpId(BoxLayout):
+    pass
 
 Window.clearcolor = (1, 1, 1, 1)  # changes the colour of the background to white 
 
@@ -21,17 +25,6 @@ def send(action: Action):
     print(f'sending Action {action}')
 
 class MyRemote(FloatLayout):
-
-    def __init__(self, **kwargs):
-        super(MyRemote, self).__init__(**kwargs)
-        
-        self.label = Label(
-            text="Remote Control",  
-            size_hint=(None, None),  
-            pos_hint={'center_x': 0.5, 'top': 1})  
-        
-        self.add_widget(self.label)
-
     def StartForward(self, instance):
         Clock.schedule_interval(self.movingForward, 0.05)
 
