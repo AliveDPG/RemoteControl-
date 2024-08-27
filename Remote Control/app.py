@@ -2,7 +2,8 @@ from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
-from kivy.uix.label import Label  # Import Label
+from kivy.uix.label import Label
+from kivy.uix.textinput import TextInput
 from kivy.clock import Clock
 from kivy.uix.widget import Widget
 from kivy.core.window import Window
@@ -22,11 +23,22 @@ class MyRemote(FloatLayout):
     robot_port = 50514
     robot_id = 1
 
-    def send(self,action: Action):
+    def __init__(self, **kwargs):
+        super(MyRemote, self).__init__(**kwargs)
+        self.ip_input = self.ids.ip_input  # Link the TextInput
+
+    def update_ip(self):
+        new_ip = self.ip_input.text.strip()  # Get and strip the new IP from TextInput
+        if new_ip:
+            self.robot_ip = new_ip  # Update the instance variable
+            print(f"Updated IP to: {self.robot_ip=}")
+
+    def send(self, action: Action):
         remote_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         msg: bytes = action.encode()
         remote_socket.sendto(msg, (self.robot_ip, self.robot_port))
-        print(f'sending Action {action}')
+        print(f'Sending Action {action} to IP {self.robot_ip=}')
+
         
     def StartForward(self, instance):
         Clock.schedule_interval(self.movingForward, INTERVAL)
