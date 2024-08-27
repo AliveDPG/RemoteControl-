@@ -5,7 +5,7 @@
         text: " /\ "  # Up Arrow
         size_hint: None, None
         size: 100, 50
-        pos_hint: {'center_x': 0.25, 'y': 0.35}
+        pos_hint: {'center_x': 0.25, 'y': 0.55}
         on_press: root.StartForward(self)
         on_release: root.StopForward(self)
 
@@ -13,7 +13,7 @@
         text: " \/ "  # Down Arrow
         size_hint: None, None
         size: 100, 50
-        pos_hint: {'center_x': 0.25, 'y': 0.1}
+        pos_hint: {'center_x': 0.25, 'y': 0.3}
         on_press: root.StartBackward(self)
         on_release: root.StopBackward(self)
 
@@ -21,7 +21,7 @@
         text: " <- "  # Left Arrow
         size_hint: None, None
         size: 100, 50
-        pos_hint: {'x': 0.05, 'center_y': 0.25}
+        pos_hint: {'x': 0.05, 'center_y': 0.45}
         on_press: root.StartLeft(self)
         on_release: root.StopLeft(self)
 
@@ -29,7 +29,7 @@
         text: " -> "  # Right Arrow
         size_hint: None, None
         size: 100, 50
-        pos_hint: {'x': 0.35, 'center_y': 0.25}
+        pos_hint: {'x': 0.35, 'center_y': 0.45}
         on_press: root.StartRight(self)
         on_release: root.StopRight(self)
     
@@ -37,14 +37,14 @@
         text: " Kick " 
         size_hint: None, None
         size: 100, 50
-        pos_hint: {'center_x': 0.9, 'center_y': 0.25} 
+        pos_hint: {'center_x': 0.9, 'center_y': 0.45} 
         on_press: root.kick(self)
 
     Button:
         text: " Dribble "
         size_hint: None, None 
         size: 100, 50
-        pos_hint: {'center_x': 0.9, 'center_y': 0.35}
+        pos_hint: {'center_x': 0.9, 'center_y': 0.55}
         on_press:root.ToggleDribble(self)
         on_release: root.ExitDribble(self)
 
@@ -52,7 +52,7 @@
         text: " R "
         size_hint: None, None 
         size: 100, 50
-        pos_hint: {'center_x': 0.4, 'center_y': 0.35}
+        pos_hint: {'center_x': 0.4, 'center_y': 0.55}
         on_press:root.StartTurningRight(self)
         on_release: root.StopTurningRight(self)
 
@@ -60,7 +60,7 @@
         text: " L "
         size_hint: None, None 
         size: 100, 50
-        pos_hint: {'center_x': 0.1, 'center_y': 0.35}
+        pos_hint: {'center_x': 0.1, 'center_y': 0.55}
         on_press: root.StartTurningLeft(self)
         on_release: root.StopTurningLeft(self)
 
@@ -71,14 +71,30 @@
         color: 0, 0, 0, 1
 
     BoxLayout:
+        pos_hint: {'center_x': 0.5, 'y': 0.065}
         height: "40dp"
         size_hint_y: None
         TextInput:
             id: ip_input
             hint_text: "Enter IP Here."
             multiline: False
-            size_hint_x: 20
+            size_hint_x: 25
         Button:
-            text: "connect"
+            text: "Connect"
             size_hint_x: 25
             on_release: root.update_ip()
+    
+    BoxLayout:
+        height: "40dp"
+        size_hint_y: None
+        TextInput:
+            id: robot_id_input
+            hint_text: 'Enter new Robot ID'
+            multiline: False
+            size_hint: (10, None)
+            height: '40dp'
+        Button:
+            text: 'Update Robot ID'
+            size_hint: (10, None)
+            height: '40dp'
+            on_release: root.update_robot_id()

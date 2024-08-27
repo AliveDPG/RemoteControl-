@@ -23,9 +23,21 @@ class MyRemote(FloatLayout):
     robot_port = 50514
     robot_id = 1
 
+    
     def __init__(self, **kwargs):
         super(MyRemote, self).__init__(**kwargs)
         self.ip_input = self.ids.ip_input  # Link the TextInput
+        self.robot_id_input = self.ids.robot_id_input
+        
+
+    def update_robot_id(self):
+        new_robot_id = self.robot_id_input.text.strip()
+        if new_robot_id:  
+            self.robot_id = int(new_robot_id)  
+            print(f"Updated Robot ID to: {self.robot_id}")
+        else:
+            print("Invalid Robot ID. Please enter a valid integer.")
+
 
     def update_ip(self):
         new_ip = self.ip_input.text.strip()  # Get and strip the new IP from TextInput
