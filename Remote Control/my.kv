@@ -46,7 +46,7 @@
         size_hint: None, None 
         size: 100, 50
         pos_hint: {'center_x': 0.9, 'center_y': 0.35}
-        on_press:
+        on_press:root.ToggleDribble(self)
         on_release: 
 
     Button:
@@ -54,16 +54,16 @@
         size_hint: None, None 
         size: 100, 50
         pos_hint: {'center_x': 0.4, 'center_y': 0.35}
-        on_press:
-        on_release:
+        on_press:root.StartTurningRight(self)
+        on_release: root.StopTurningRight(self)
 
     Button:
         text: " L "
         size_hint: None, None 
         size: 100, 50
         pos_hint: {'center_x': 0.1, 'center_y': 0.35}
-        on_press:
-        on_release:
+        on_press: root.StartTurningLeft(self)
+        on_release: root.StopTurningLeft(self)
 
     Label:
         text: "Remote Control"
@@ -71,13 +71,12 @@
         pos_hint: {'center_x': 0.5, 'top': 1.35}
         color: 0, 0, 0, 1
 
-<IpIdt>:
-    orientation: "vertical"
     BoxLayout:
         height: "40dp"
         size_hint_y: None
         TextInput:
+            hint_text: "Enter IP Here."
             size_hint_x: 20
         Button:
-            text: "IP"
+            text: "connect"
             size_hint_x: 25
