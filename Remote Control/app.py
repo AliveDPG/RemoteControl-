@@ -95,7 +95,7 @@ class MyRemote(FloatLayout):
         send(action)
     
     def kick(self, dt):
-        action = Action(robot_id,k=1)
+        action = Action(robot_id,kick=1)
         send(action)
         
     def dribble(self,dt):
