@@ -1,27 +1,34 @@
-<MyRemote>
+<MyRemote>:
+    FloatLayout:
 
+    Button:
+        text: " /\ "  # Up Arrow
+        size_hint: None, None
+        size: 100, 50
+        pos_hint: {'center_x': 0.25, 'y': 0.55}
+        on_press: root.StartForward(self)
+        on_release: root.StopForward(self)
 
-    GridLayout:
-        cols:1
-        size: root.width, root.height
+    Button:
+        text: " \/ "  # Down Arrow
+        size_hint: None, None
+        size: 100, 50
+        pos_hint: {'center_x': 0.25, 'y': 0.3}
+        on_press: root.StartBackward(self)
+        on_release: root.StopBackward(self)
 
-        Button:
-            text:"Forward"
-            on_press: root.StartForward()
-            on_release: root.StopForward()
-        
-        Button:
-            text:"Backward"
-            on_press: root.StartBackward()
-            on_release: root.StopBackward()
-        
-        Button:
-            text:"Left"
-            on_press: root.StartLeft()
-            on_release: root.StopLeft()
-        
-        Button:
-            text:"Right"
-            on_press: root.StartRight()
-            on_release: root.StopRight()
-       
+    Button:
+        text: " <- "  # Left Arrow
+        size_hint: None, None
+        size: 100, 50
+        pos_hint: {'x': 0.05, 'center_y': 0.45}
+        on_press: root.StartLeft(self)
+        on_release: root.StopLeft(self)
+
+    Button:
+        text: " -> "  # Right Arrow
+        size_hint: None, None
+        size: 100, 50
+        pos_hint: {'x': 0.35, 'center_y': 0.45}
+        on_press: root.StartRight(self)
+        on_release: root.StopRight(self)
