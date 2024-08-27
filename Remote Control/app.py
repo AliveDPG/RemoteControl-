@@ -22,6 +22,7 @@ class MyRemote(FloatLayout):
     robot_ip = "192.168.200.243"
     robot_port = 50514
     robot_id = 1
+    SPEED = 10
 
     def __init__(self, **kwargs):
         super(MyRemote, self).__init__(**kwargs)
@@ -89,19 +90,19 @@ class MyRemote(FloatLayout):
     
 
     def movingForward(self, dt):
-        action = Action(robot_id=self.robot_id, vy=5)
+        action = Action(robot_id=self.robot_id, vy=self.SPEED)
         self.send(action)
 
     def movingBackward(self, dt):
-        action = Action(robot_id=self.robot_id, vy=-5)
+        action = Action(robot_id=self.robot_id, vy=-self.SPEED)
         self.send(action)
 
     def movingLeft(self, dt):
-        action = Action(robot_id=self.robot_id, vx=-5)
+        action = Action(robot_id=self.robot_id, vx=-self.SPEED)
         self.send(action)
 
     def movingRight(self, dt):
-        action = Action(robot_id=self.robot_id, vx=5)
+        action = Action(robot_id=self.robot_id, vx=self.SPEED)
         self.send(action)
     
     def turnRight(self,dt):
