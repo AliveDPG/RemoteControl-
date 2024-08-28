@@ -15,7 +15,7 @@ class IpId(BoxLayout):
 
 Window.clearcolor = (1, 1, 1, 1)  # changes the colour of the background to white 
 
-INTERVAL = 0.05 # second
+INTERVAL = 0.1 # second
 
 class MyRemote(FloatLayout):
     DRIBBLE= False
@@ -124,11 +124,11 @@ class MyRemote(FloatLayout):
         self.send(action)
     
     def turnRight(self,dt):
-        action = Action(robot_id=self.robot_id,w=0.5)
+        action = Action(robot_id=self.robot_id,w=0.1)
         self.send(action)
         
     def turnLeft(self,dt):
-        action = Action(robot_id=self.robot_id,w=-0.5)
+        action = Action(robot_id=self.robot_id,w=-0.1)
         self.send(action)
     
     def kick(self, dt):
