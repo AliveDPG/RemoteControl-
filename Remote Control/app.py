@@ -99,6 +99,12 @@ class MyRemote(FloatLayout):
         if self.DRIBBLE is False:
             Clock.unschedule(self.dribble)
     
+    def Stop(self, instance):
+        # if self.Stop is False:
+        #     Clock.unschedule(self.Stop)
+        action = Action(robot_id=self.robot_id, vx = 0., vy = 0. , w= 0. )
+        self.send(action)
+        
 
     def movingForward(self, dt):
         action = Action(robot_id=self.robot_id, vy=5)
