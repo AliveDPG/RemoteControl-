@@ -15,14 +15,16 @@ class IpId(BoxLayout):
 
 Window.clearcolor = (1, 1, 1, 1)  # changes the colour of the background to white 
 
-INTERVAL = 0.1 # second
+INTERVAL = 0.05 # second
 
 class MyRemote(FloatLayout):
     DRIBBLE= False
     robot_ip = "192.168.200.243"
     robot_port = 50514
     robot_id = 1
-    SPEED = 10
+    SPEED = 20
+    rotation = 0.1
+
 
     
     def __init__(self, **kwargs):
@@ -108,27 +110,27 @@ class MyRemote(FloatLayout):
         
 
     def movingForward(self, dt):
-        action = Action(robot_id=self.robot_id, vy=self.SPEED)
+        action = Action(robot_id=self.robot_id, vx=self.SPEED)
         self.send(action)
 
     def movingBackward(self, dt):
-        action = Action(robot_id=self.robot_id, vy=-self.SPEED)
-        self.send(action)
-
-    def movingLeft(self, dt):
         action = Action(robot_id=self.robot_id, vx=-self.SPEED)
         self.send(action)
 
+    def movingLeft(self, dt):
+        action = Action(robot_id=self.robot_id, vy=-self.SPEED)
+        self.send(action)
+
     def movingRight(self, dt):
-        action = Action(robot_id=self.robot_id, vx=self.SPEED)
+        action = Action(robot_id=self.robot_id, vy=self.SPEED)
         self.send(action)
     
     def turnRight(self,dt):
-        action = Action(robot_id=self.robot_id,w=0.1)
+        action = Action(robot_id=self.robot_id,w=self.rotation)
         self.send(action)
         
     def turnLeft(self,dt):
-        action = Action(robot_id=self.robot_id,w=-0.1)
+        action = Action(robot_id=self.robot_id,w=-self.rotation)
         self.send(action)
     
     def kick(self, dt):
