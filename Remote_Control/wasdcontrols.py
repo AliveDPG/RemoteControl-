@@ -8,7 +8,7 @@ from Action import Action
 
 class WASDControls(FloatLayout):
     # Configuration
-    robot_ip = "192.168.25.243"  # Replace with your robot's IP address
+    robot_ip = "192.168.155.108"  # Replace with your robot's IP address
     robot_port = 50514             # Replace with your robot's listening port
     robot_id = 1
     SPEED = 50           # Movement speed
@@ -68,17 +68,17 @@ class WASDControls(FloatLayout):
     def movingForward(self):
         """Move the robot forward."""
         if self.DRIBBLE == True:
-            action = Action(robot_id=self.robot_id, vx=self.SPEED, dribble=1)
+            action = Action(robot_id=self.robot_id, vx=-self.SPEED, dribble=1)
         else:
-            action = Action(robot_id=self.robot_id, vx=self.SPEED)
+            action = Action(robot_id=self.robot_id, vx=-self.SPEED)
         self.send(action)
 
     def movingBackward(self):
         """Move the robot backward."""
         if self.DRIBBLE == True:
-            action = Action(robot_id=self.robot_id, vx=-self.SPEED, dribble=1)
+            action = Action(robot_id=self.robot_id, vx=self.SPEED, dribble=1)
         else:
-            action = Action(robot_id=self.robot_id, vx=-self.SPEED)
+            action = Action(robot_id=self.robot_id, vx=self.SPEED)
         self.send(action)
 
     def movingLeft(self):
