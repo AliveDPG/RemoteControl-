@@ -3,6 +3,7 @@ from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
 from kivy.core.window import Window
 import time
+import threading 
 from Action import Action
 
 class WASDControls(FloatLayout):
@@ -13,7 +14,7 @@ class WASDControls(FloatLayout):
     SPEED = 50           # Movement speed
     ROTATION_SPEED = 0.1   
     DRIBBLE = False       # Rotation speed
-
+    is_square_movement = False
 
     def __init__(self, **kwargs):
         super(WASDControls, self).__init__(**kwargs)
@@ -56,6 +57,8 @@ class WASDControls(FloatLayout):
         elif key == 32:
             self.DRIBBLE = toggle(self.DRIBBLE)
             print(self.DRIBBLE)
+        elif key == 122: # z key for square movement 
+            self.toggle_square_movement()
 
     def on_keyboard_up(self, window, key, scancode):
         """Handle key release events to stop the robot."""
@@ -118,6 +121,15 @@ class WASDControls(FloatLayout):
             action = Action(robot_id=self.robot_id, vx=0.0, vy=0.0, w=0.0)
         self.send(action)
 
+    def toggle_square_movement(self):
+        """Make robot move in a square"""
+        if self.is_square_movement:
+            self.is_square_movement = False
+            print("Square movement stopped.")
+        else:
+            self.is_square_movement = True
+            print("Square movement started.")
+            threading.Thread(target=self.move_in_square).start()
 
     def on_stop(self):
         """Close the UDP socket when the app stops."""
