@@ -8,9 +8,9 @@ from Action import Action
 
 class WASDControls(FloatLayout):
     # Configuration
-    robot_ip = "192.168.155.108"  # Replace with your robot's IP address
+    robot_ip = "192.168.155.108" # Replace with your robot's IP address
     robot_port = 50514             # Replace with your robot's listening port
-    robot_id = 1
+    robot_id = 1    
     SPEED = 50           # Movement speed
     ROTATION_SPEED = 0.1   
     DRIBBLE = False       # Rotation speed
@@ -38,23 +38,23 @@ class WASDControls(FloatLayout):
         """Handle key press events."""
         if key == 119:  # W key (Move Forward)
             self.movingForward()
-            time.sleep(0.05)
+            time.sleep(0.1)
         elif key == 97:  # A key (Move Left)
             self.movingLeft()
-            time.sleep(0.05)
+            time.sleep(0.1)
         elif key == 115:  # S key (Move Backward)
             self.movingBackward()
-            time.sleep(0.05)
+            time.sleep(0.1)
         elif key == 100:  # D key (Move Right)
             self.movingRight()
-            time.sleep(0.05)
+            time.sleep(0.1)
         elif key == 113:  # Q key (Rotate Left)
             self.turnLeft()
-            time.sleep(0.05)
+            time.sleep(0.1)
         elif key == 101:  # E key (Rotate Right)
             self.turnRight()
-            time.sleep(0.05)
-        elif key == 32:
+            time.sleep(0.1)
+        elif key == 32:   # Spacebar (for dribbling)
             self.DRIBBLE = toggle(self.DRIBBLE)
             print(self.DRIBBLE)
         elif key == 122: # z key for square movement 
